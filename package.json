@@ -29,6 +29,6 @@
 		"webpackbar": "^5.0.0-3"
 	},
 	"dependencies": {
-		"alge": "file:../engine"
+		"alge": "file:../alge"
 	}
 }
