@@ -2,33 +2,43 @@
 	"name": "alge-skeleton",
 	"version": "1.0.0",
 	"description": "A skeleton template for games made with alge.",
-	"source": "src/*.ts",
-	"main": "dist/index.js",
-	"browser": "dist/index.umd.js",
-	"scripts": {
-		"dev": "webpack --mode=development --watch",
-		"build": "webpack --mode=production",
-		"nw": "npm run build & nw ./"
-	},
-	"window": {
-		"title": "New Game",
-		"width": 720,
-		"height": 480
-	},
-	"chromium-args": "--disable-devtools",
 	"keywords": [],
-	"author": "Colin Espinas",
 	"license": "MIT",
+	"author": "Colin Espinas",
+	"main": "electron.main.js",
+	"scripts": {
+		"dev": "webpack serve --mode=development",
+		"build": "webpack --mode=production",
+		"nw": "npm run build & nw ./build",
+		"electron": "npm run build & electron ./",
+		"electron:package": "npm run build & electron-builder"
+	},
+	"postinstall": "electron-builder install-app-deps",
+	"dependencies": {
+		"alge": "file:./engine"
+	},
 	"devDependencies": {
-		"fork-ts-checker-webpack-plugin": "^6.2.1",
-		"nw": "^0.46.4",
-		"ts-loader": "^8.1.0",
-		"typescript": "^3.9.9",
+		"copy-webpack-plugin": "^9.0.1",
+		"electron": "^15.3.0",
+		"electron-builder": "^22.13.1",
+		"fork-ts-checker-webpack-plugin": "^6.4.0",
+		"html-webpack-plugin": "^5.5.0",
+		"ts-loader": "^9.2.6",
+		"typescript": "^4.4.4",
 		"webpack": "^5.31.2",
 		"webpack-cli": "^4.6.0",
+		"webpack-dev-server": "^4.4.0",
 		"webpackbar": "^5.0.0-3"
 	},
-	"dependencies": {
-		"alge": "file:../engine"
+	"source": "src/*.ts",
+	"build": {
+		"productName": "New Game",
+		"mac": {
+			"category": "public.app-category.games"
+		},
+		"icon": "assets/icon.ico",
+		"directories": {
+			"output": "packaged"
+		}
 	}
 }

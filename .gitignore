@@ -24,3 +24,9 @@ node_modules
 
 # dotenv environment variables file
 .env
+
+# Game build output
+build
+
+# Game package output
+packaged
